@@ -7,7 +7,7 @@
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    background: linear-gradient(135deg, #e24edb);
+    background: linear-gradient(135deg, hsl(300, 84%, 48%));
     min-height: 100vh;
     color: #2c3e50;
 }
@@ -61,7 +61,6 @@ body {
 .menu-radio {
     display: none;
 }
-
 .menu-label {
     padding: 14px 28px;
     border: none;
@@ -74,11 +73,20 @@ body {
     color: #2c3e50;
     display: inline-block;
 }
+#menu-normal-radio:checked ~ .header .menu-label[for="menu-normal-radio"] {
+    background: #3498db;
+    color: white;
+    transform: translateY(-3px);
+}
 
-#menu-normal-radio:checked ~ .header .menu-label[for="menu-normal-radio"],
-#menu-dietetico-radio:checked ~ .header .menu-label[for="menu-dietetico-radio"],
-#menu-reparto-radio:checked ~ .header .menu-label[for="menu-reparto-radio"] {
+#menu-dietetico-radio:checked ~ .header .menu-label[for="menu-dietetico-radio"] {
     background: #27ae60;
+    color: white;
+    transform: translateY(-3px);
+}
+
+#menu-descuentos-radio:checked ~ .header .menu-label[for="menu-descuentos-radio"] {
+    background: #e74c3c;
     color: white;
     transform: translateY(-3px);
 }
@@ -96,9 +104,15 @@ body {
     display: none;
 }
 
-#menu-normal-radio:checked ~ .main #menu-normal-content,
-#menu-dietetico-radio:checked ~ .main #menu-dietetico-content,
-#menu-reparto-radio:checked ~ .main #menu-reparto-content {
+#menu-normal-radio:checked ~ .main #menu-normal-content {
+    display: block;
+}
+
+#menu-dietetico-radio:checked ~ .main #menu-dietetico-content {
+    display: block;
+}
+
+#menu-descuentos-radio:checked ~ .main #menu-descuentos-content {
     display: block;
 }
 
@@ -164,12 +178,6 @@ body {
     font-weight: 600;
 }
 
-.menu-item p {
-    color: #7f8c8d;
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
-}
-
 .price {
     font-size: 1.5rem;
     font-weight: 700;
@@ -202,54 +210,42 @@ body {
     color: white;
 }
 
-#menu-dietetico-radio:checked ~ .main #menu-dietetico-content .menu-item {
+.price.original {
+    color: #7f8c8d;
+    text-decoration: line-through;
+    font-size: 1.1rem;
+    margin-right: 0.5rem;
+    display: inline-block;
+}
+
+.price.discount {
+    color: #e74c3c;
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: inline-block;
+}
+
+.badge.discount-badge {
+    background: #e74c3c;
+    color: white;
+    margin-top: 0.5rem;
+    display: block;
+}
+
+#menu-dietetico-content .menu-item {
     border-left-color: #27ae60;
 }
 
-#menu-dietetico-radio:checked ~ .main #menu-dietetico-content .menu-category h3 {
+#menu-dietetico-content .menu-category h3 {
     border-bottom-color: #27ae60;
 }
 
-.mapa-container {
-    text-align: center;
-    margin-bottom: 2.5rem;
+#menu-descuentos-content .menu-item {
+    border-left-color: #e74c3c;
 }
 
-.mapa-svg {
-    max-width: 100%;
-    height: auto;
-    border-radius: 15px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-}
-
-.zonas-lista {
-    background: #f8f9fa;
-    padding: 2rem;
-    border-radius: 15px;
-}
-
-.zonas-lista h4 {
-    color: #2c3e50;
-    margin-bottom: 1.5rem;
-    text-align: center;
-    font-size: 1.4rem;
-    font-weight: 600;
-}
-
-.zonas-lista ul {
-    list-style: none;
-    columns: 2;
-    gap: 2rem;
-}
-
-.zonas-lista li {
-    padding: 0.8rem 0;
-    border-bottom: 1px solid #dee2e6;
-    font-size: 1.1rem;
-}
-
-#menu-reparto-content .menu-category h3 {
-    border-bottom-color: #3498db;
+#menu-descuentos-content .menu-category h3 {
+    border-bottom-color: #e74c3c;
 }
 
 @media (max-width: 768px) {
@@ -258,7 +254,6 @@ body {
     .menu-label { width: 220px; text-align: center; padding: 12px 24px; }
     .menu-category { padding: 2rem; }
     .menu-content h2 { font-size: 2rem; }
-    .zonas-lista ul { columns: 1; }
     .menu-items { grid-template-columns: 1fr; }
     .logo { width: 80px; height: 80px; }
 }
